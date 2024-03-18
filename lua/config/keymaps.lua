@@ -38,3 +38,5 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- nvim-ChatGPT
 vim.api.nvim_set_keymap('n', '<C-c><C-g>', ':ChatGPT<CR>', { noremap = true, silent = true }) -- open chat gpt dialog
 vim.api.nvim_set_keymap('n', '<C-c><C-s>', ':ChatGPTRun summarize<CR>', { noremap = true, silent = true }) -- open chat gpt dialog
+
+vim.api.nvim_set_keymap('n', '<leader>g', ':Neogit<CR>', { noremap = true, silent = true })
