@@ -1,4 +1,3 @@
-
 return { -- Fuzzy Finder (files, lsp, etc)
   'nvim-telescope/telescope.nvim',
   event = 'VeryLazy',
@@ -24,7 +23,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- Useful for getting pretty icons, but requires special font.
     --  If you already have a Nerd Font, or terminal set up with fallback fonts
     --  you can enable this
-    { 'nvim-tree/nvim-web-devicons' }
+    { 'nvim-tree/nvim-web-devicons' },
   },
 
   config = function()
@@ -53,12 +52,17 @@ return { -- Fuzzy Finder (files, lsp, etc)
       -- You can put your default mappings / updates / etc. in here
       --  All the info you're looking for is in `:help telescope.setup()`
       --
-      -- defaults = {
-      --   mappings = {
-      --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-      --   },
-      -- },
-      -- pickers = {}
+      defaults = {
+        mappings = {
+          --i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+        },
+        file_ignore_patterns = { 'node_modules' },
+      },
+      pickers = {
+        find_files = {
+          hidden = true,
+        },
+      },
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),

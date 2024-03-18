@@ -27,7 +27,7 @@ return { -- Autocompletion
     --    you can use this plugin to help you. It even has snippets
     --    for various frameworks/libraries/etc. but you will have to
     --    set up the ones that are useful for you.
-    -- 'rafamadriz/friendly-snippets',
+    'rafamadriz/friendly-snippets',
   },
   config = function()
     -- See `:help cmp`
@@ -56,7 +56,7 @@ return { -- Autocompletion
         -- Accept ([y]es) the completion.
         --  This will auto-import if your LSP supports it.
         --  This will expand snippets if the LSP sent a snippet.
-        ['<C-y>'] = cmp.mapping.confirm { select = true },
+        ['<C-CR>'] = cmp.mapping.confirm { select = true },
 
         -- Manually trigger a completion from nvim-cmp.
         --  Generally you don't need this, because nvim-cmp will display

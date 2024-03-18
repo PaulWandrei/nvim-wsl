@@ -5,6 +5,7 @@ return { -- LSP Configuration & Plugins
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
+    'Hoffs/omnisharp-extended-lsp.nvim',
 
     -- Useful status updates for LSP.
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -21,7 +22,9 @@ return { -- LSP Configuration & Plugins
         -- NOTE: Remember that lua is a real programming language, and as such it is possible
         -- to define small helper and utility functions so you don't have to repeat yourself
         -- many times.
-        --
+
+        local buf_ft = vim.bo[event.buf].filetype -- Get the buffer's filetype
+
         -- In this case, we create a function that lets us more easily define mappings specific
         -- for LSP related items. It sets the mode, buffer and description for us each time.
         local map = function(keys, func, desc)
@@ -39,6 +42,13 @@ return { -- LSP Configuration & Plugins
         -- Jump to the implementation of the word under your cursor.
         --  Useful when your language has ways of declaring types without an actual implementation.
         map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+
+        if buf_ft == 'cs' then
+          -- Replace certain keymaps with OmniSharp extended functionality
+          map('gd', "<cmd>lua require('omnisharp_extended').lsp_definition()<CR>", '[G]oto [D]efinition')
+          map('gr', "<cmd>lua require('omnisharp_extended').lsp_references()<CR>", '[G]oto [R]eferences')
+          map('gI', "<cmd>lua require('omnisharp_extended').lsp_implementation()<CR>", '[G]oto [I]mplementation')
+        end
 
         -- Jump to the type of the word under your cursor.
         --  Useful when you're not sure what type a variable is and you want to see
@@ -96,8 +106,9 @@ return { -- LSP Configuration & Plugins
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-    local os = require('os')
-    local omnisharp_server_location = 'C:/Users/Paul.wandrei/appdata/local/nvim-data/mason/packages/omnisharp/omnisharp.cmd'
+    local os = require 'os'
+    -- local omnisharp_server_location = 'C:/Users/Paul.wandrei/appdata/local/nvim-data/mason/packages/omnisharp/omnisharp.cmd'
+    local omnisharp_server_location = '/home/aoi/.local/share/nvim/mason/packages/omnisharp/omnisharp'
     local pid = vim.fn.getpid()
     --
     -- Enable the following language servers
@@ -125,8 +136,8 @@ return { -- LSP Configuration & Plugins
       angularls = {},
 
       omnisharp = {
-        cmd = { omnisharp_server_location, "--languageserver" , "--hostPID", tostring(pid) },
-        filetypes = { "cs", "vb" },
+        cmd = { omnisharp_server_location, '--languageserver', '--hostPID', tostring(pid) },
+        filetypes = { 'cs', 'vb' },
       },
 
       lua_ls = {

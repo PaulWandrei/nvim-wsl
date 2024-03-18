@@ -22,7 +22,7 @@ return {
     'leoluz/nvim-dap-go',
   },
   config = function()
-    vim.cmd('set noshellslash')
+    vim.cmd 'set noshellslash'
     local dap = require 'dap'
     local dapui = require 'dapui'
 
@@ -39,24 +39,24 @@ return {
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
-       -- 'delve',
-      }
+        -- 'delve',
+      },
     }
 
     dap.adapters.coreclr = {
       type = 'executable',
-      --command = 'C:/Users/Paul.wandrei/appdata/local/nvim-data/mason/packages/netcoredbg',
-      command = 'C:/Users/Paul.wandrei/AppData/Local/nvim-data/mason/packages/netcoredbg/netcoredbg/netcoredbg.exe',
-      args = {'--interpreter=vscode'}
+      -- command = 'C:/Users/Paul.wandrei/AppData/Local/nvim-data/mason/packages/netcoredbg/netcoredbg/netcoredbg.exe',
+      command = '/home/aoi/.local/share/nvim/mason/packages/netcoredbg/netcoredbg',
+      args = { '--interpreter=vscode' },
     }
 
     dap.configurations.cs = {
       {
-        type = "coreclr",
-        name = "launch - netcoredbg",
-        request = "launch",
+        type = 'coreclr',
+        name = 'launch - netcoredbg',
+        request = 'launch',
         program = function()
-            return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+          return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
         end,
       },
     }

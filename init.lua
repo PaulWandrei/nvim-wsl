@@ -1,6 +1,6 @@
-require("config.options")
-require("config.keymaps")
-require("config.autocmds")
+require 'config.options'
+require 'config.keymaps'
+require 'config.autocmds'
 
 -- [[ Configure and install plugins ]]
 --
@@ -97,13 +97,12 @@ require('lazy').setup {
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
-      require('mini.statusline').setup()
+      -- require('mini.statusline').setup()
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
-
 
   --    For additional information see: :help lazy.nvim-lazy.nvim-structuring-your-plugins
   { import = 'plugins' },
