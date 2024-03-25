@@ -2,6 +2,7 @@ require 'config.options'
 require 'config.keymaps'
 require 'config.autocmds'
 
+vim.o.termguicolors = true
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -11,6 +12,8 @@ require 'config.autocmds'
 --
 --  To update plugins, you can run
 --    :Lazy update
+
+-- set termguicolors = true
 
 require('lazy').setup {
 
@@ -107,6 +110,37 @@ require('lazy').setup {
   --    For additional information see: :help lazy.nvim-lazy.nvim-structuring-your-plugins
   { import = 'plugins' },
 }
+
+function PrintAvailableColorschemes()
+  local rtp = vim.api.nvim_list_runtime_paths()
+  local colorscheme_paths = {}
+  local unique_colorschemes = {}
+
+  for _, path in pairs(rtp) do
+    local colors_dir = path .. '/colors'
+    local ok, files = pcall(vim.fn.readdir, colors_dir)
+    if ok then
+      for _, file in pairs(files) do
+        if file:match '%.vim$' then
+          local scheme = file:gsub('%.vim$', '')
+          if not unique_colorschemes[scheme] then
+            unique_colorschemes[scheme] = true
+            table.insert(colorscheme_paths, scheme)
+          end
+        end
+      end
+    end
+  end
+
+  table.sort(colorscheme_paths)
+  print 'Available colorschemes:'
+  for _, scheme in ipairs(colorscheme_paths) do
+    print(scheme)
+  end
+end
+
+-- Call the function to print the color schemes when NeoVim starts
+-- PrintAvailableColorschemes()
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

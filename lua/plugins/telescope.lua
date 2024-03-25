@@ -59,13 +59,24 @@ return { -- Fuzzy Finder (files, lsp, etc)
         file_ignore_patterns = { 'node_modules' },
       },
       pickers = {
+        colorscheme = {
+          enable_preview = true,
+          theme = 'cursor',
+        },
         find_files = {
           hidden = true,
+          theme = 'dropdown',
+        },
+        live_grep = {
+          hidden = true,
+          theme = 'dropdown',
         },
       },
       extensions = {
         ['ui-select'] = {
-          require('telescope.themes').get_dropdown(),
+          -- require('telescope.themes').get_dropdown(),
+          -- require('telescope.themes').get_cursor(),
+          require('telescope.themes').get_ivy(),
         },
       },
     }
@@ -86,6 +97,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
     vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+    vim.keymap.set('n', '<leader>sc', builtin.colorscheme, { desc = '[ ] Find existing color schemes' })
 
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set('n', '<leader>/', function()

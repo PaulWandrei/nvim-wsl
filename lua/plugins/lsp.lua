@@ -106,6 +106,11 @@ return { -- LSP Configuration & Plugins
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
+    capabilities.textDocument.foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true,
+    }
+
     local os = require 'os'
     -- local omnisharp_server_location = 'C:/Users/Paul.wandrei/appdata/local/nvim-data/mason/packages/omnisharp/omnisharp.cmd'
     local omnisharp_server_location = '/home/aoi/.local/share/nvim/mason/packages/omnisharp/omnisharp'
@@ -132,6 +137,8 @@ return { -- LSP Configuration & Plugins
       --
       -- But for many setups, the LSP (`tsserver`) will work just fine
       tsserver = {},
+
+      biome = {},
 
       angularls = {},
 

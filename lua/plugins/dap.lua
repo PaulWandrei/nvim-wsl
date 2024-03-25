@@ -11,6 +11,8 @@ return {
   'mfussenegger/nvim-dap',
   -- NOTE: And you can specify dependencies as well
   dependencies = {
+
+    'nvim-neotest/nvim-nio',
     -- Creates a beautiful debugger UI
     'rcarriga/nvim-dap-ui',
 
@@ -50,13 +52,16 @@ return {
       args = { '--interpreter=vscode' },
     }
 
+    -- Neotest Test runner looks at this table
+    dap.adapters.netcoredbg = vim.deepcopy(dap.adapters.coreclr)
+
     dap.configurations.cs = {
       {
         type = 'coreclr',
         name = 'launch - netcoredbg',
         request = 'launch',
         program = function()
-          return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+          return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/', 'file')
         end,
       },
     }
