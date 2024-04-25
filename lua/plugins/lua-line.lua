@@ -1,6 +1,6 @@
 return {
   'nvim-lualine/lualine.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  -- dependencies = { 'nvim-tree/nvim-web-devicons' },
   event = 'VeryLazy',
   opts = {
     options = {
@@ -9,6 +9,7 @@ return {
       component_separators = '|',
       section_separators = { left = '', right = '' },
       disabled_filetypes = {
+        'neo-tree',
 
         statusline = {
           'NvimTree',
@@ -16,12 +17,14 @@ return {
         },
 
         winbar = {
+          'neo-tree',
           'NvimTree',
           'NeogitStatus',
         },
       },
 
       ignore_focus = {
+        'neo-tree',
         'NvimTree',
         'NeogitStatus',
         'dap-repl',

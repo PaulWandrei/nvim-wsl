@@ -3,24 +3,10 @@ require 'config.keymaps'
 require 'config.autocmds'
 
 vim.o.termguicolors = true
--- [[ Configure and install plugins ]]
---
---  To check the current status of your plugins, run
---    :Lazy
---
---  You can press `?` in this menu for help. Use `:q` to close the window
---
---  To update plugins, you can run
---    :Lazy update
-
 -- set termguicolors = true
 
 require('lazy').setup {
-
-  -- [[ Plugin Specs list ]]
-
   -- Use `opts = {}` to force a plugin to be loaded.
-  --
   --  This is equivalent to:
   --    require('Comment').setup({})
 
@@ -71,7 +57,8 @@ require('lazy').setup {
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
+        javascript = { { 'prettierd', 'prettier' } },
+        c_sharp = { 'csharpier' },
       },
     },
   },
@@ -108,7 +95,29 @@ require('lazy').setup {
   },
 
   --    For additional information see: :help lazy.nvim-lazy.nvim-structuring-your-plugins
-  { import = 'plugins' },
+  --[[   { import = 'plugins' }, ]]
+  {
+    { import = 'plugins.chatgippity' },
+    { import = 'plugins.cmp' },
+    { import = 'plugins.color-scheme' },
+    { import = 'plugins.dap' },
+    { import = 'plugins.fugitive' },
+    { import = 'plugins.harpoon' },
+    { import = 'plugins.indent-line' },
+    { import = 'plugins.lsp' },
+    { import = 'plugins.lua-line' },
+    { import = 'plugins.neo-test' },
+    { import = 'plugins.neo-tree' },
+    { import = 'plugins.neogit' },
+    --{ import = 'plugins.nvim-tree' },
+    { import = 'plugins.scheming' },
+    { import = 'plugins.telescope' },
+    { import = 'plugins.toggleterm' },
+    { import = 'plugins.tree-sitter' },
+    { import = 'plugins.ufo' },
+    { import = 'plugins.which-key' },
+    { import = 'plugins.octo' },
+  },
 }
 
 function PrintAvailableColorschemes()
