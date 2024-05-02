@@ -117,6 +117,7 @@ require('lazy').setup {
     { import = 'plugins.ufo' },
     { import = 'plugins.which-key' },
     { import = 'plugins.octo' },
+    { import = 'plugins.lazygit' },
   },
 }
 

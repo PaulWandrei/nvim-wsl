@@ -37,6 +37,9 @@ vim.api.nvim_set_keymap('n', '<C-c><C-s>', ':ChatGPTRun summarize<CR>', { norema
 -- neogit
 vim.api.nvim_set_keymap('n', '<leader>ng', ':Neogit<CR>', { noremap = true, silent = true })
 
+-- lazygit
+vim.api.nvim_set_keymap('n', '<leader>lg', ':LazyGit<cr>', { noremap = true, silent = true }) -- open LazyGit
+
 -- text wrap
 vim.api.nvim_set_keymap('n', '<leader>ww', ':set wrap!<CR>', { noremap = true, silent = true })
 
