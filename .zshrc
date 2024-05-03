@@ -1,11 +1,6 @@
 #eval `ssh-agent`
 #ssh-add ~/.ssh/id_ed25519
 
-#keep sensitive environment vars in .env
-if [[ -f ~/.config/.env ]]; then
-  source ~/.config/.env
-fi
-
 # Set up fzf key bindings and fuzzy completion
 # eval "$(fzf --zsh)"
 
